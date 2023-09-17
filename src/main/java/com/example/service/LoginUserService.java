@@ -9,8 +9,7 @@ import com.example.entity.User;
 import com.example.repository.UserRepository;
 
 @Service
-public class LoginUserService implements UserDetailsService {
-	
+public class LoginUserService implements UserDetailsService{
 	private final UserRepository userRepository;
 	
 	@Autowired
@@ -18,15 +17,12 @@ public class LoginUserService implements UserDetailsService {
 		this.userRepository = userRepository;
 	}
 	
-	
 	@Override
 	public LoginUser loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = this.userRepository.findByEmail(email);
-		
 		if (user == null) {
 			throw new UsernameNotFoundException("ユーザが見つかりません");
 		}
-		
-	return new LoginUser(user);
+		return new LoginUser(user);
 	}
 }
